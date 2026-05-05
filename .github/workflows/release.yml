@@ -1,4 +1,4 @@
-name: release
+name: Build and create release
 on: workflow_dispatch
 jobs:
   build:
@@ -17,6 +17,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew -v
       - run: ./gradlew nativeCompile
+      - run: |
+          cd app/build/native/nativeCompile/
+          mv -- app "app-${{ matrix.os }}"
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.os }}

@@ -17,9 +17,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: ./gradlew -v
       - run: ./gradlew nativeCompile
-      - run: |
-          cd app/build/native/nativeCompile/
-          mv -- app "app-${{ matrix.os }}"
+      - run: file app/build/native/nativeCompile/*
       - uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.os }}

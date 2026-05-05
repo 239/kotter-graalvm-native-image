@@ -32,6 +32,7 @@ application {
 graalvmNative {
     binaries {
         named("main") {
+            imageName.set(project.name)
             buildArgs.add("--enable-native-access=ALL-UNNAMED")
         }
     }

@@ -1,7 +1,7 @@
 plugins {
-    application
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.graalvm.native)
+    application
 }
 
 repositories {
@@ -39,3 +39,7 @@ graalvmNative {
         }
     }
 }
+
+//tasks.named("run") {
+//    outputs.upToDateWhen { false }
+//}

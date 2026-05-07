@@ -6,12 +6,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven("https://central.sonatype.com/repository/maven-snapshots/") { //TODO !
-        mavenContent {
-            includeGroup("com.varabyte.kotter")
-            snapshotsOnly()
-        }
-    }
 }
 
 dependencies {
@@ -40,6 +34,4 @@ graalvmNative {
     }
 }
 
-//tasks.named("run") {
-//    outputs.upToDateWhen { false }
-//}
+tasks.named("run") { outputs.upToDateWhen { false } }

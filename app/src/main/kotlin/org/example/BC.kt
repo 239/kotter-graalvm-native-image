@@ -13,8 +13,8 @@ class BC(
     var bounces: Int = 0
 
     companion object {
-        var width = 1
-        var height = 1
+        var limitx = 1.0
+        var limity = 1.0
         var gravity = 0.1
         var drift = 0.6
     }
@@ -27,12 +27,12 @@ class BC(
             px = 0.0
             vx *= -restitution
         }
-        if (px > width) {
-            px = width.toDouble()
+        if (px > limitx) {
+            px = limitx
             vx *= -restitution
         }
-        if (py > height) {
-            py = height.toDouble()
+        if (py > limity) {
+            py = limity
             vy *= -restitution
             vx *= 0.9
             bounces++

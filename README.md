@@ -12,17 +12,13 @@ A colorful demo for the terminal built with Kotlin and [Kotter](https://github.c
 
 ## Usage
 
-To run the application during development:
+To run the application during development inside VirtualTerminal:
 
-```bash
-./gradlew run
-```
+`./gradlew test` (`run` will **not** work with good reason)
 
 To generate a standalone executable for your current platform:
 
-```bash
-./gradlew nativeCompile
-```
+`./gradlew nativeCompile`
 
 The binary will be located in: `app/build/native/nativeCompile/`
 

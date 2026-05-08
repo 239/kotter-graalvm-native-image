@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotter.jvm)
+    testImplementation(kotlin("test"))
 }
 
 java {
@@ -34,4 +35,4 @@ graalvmNative {
     }
 }
 
-tasks.named("run") { outputs.upToDateWhen { false } }
+tasks.named("test") { outputs.upToDateWhen { false } }

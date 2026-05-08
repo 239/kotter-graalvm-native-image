@@ -5,14 +5,15 @@ import com.varabyte.kotter.foundation.collections.*
 import com.varabyte.kotter.foundation.input.*
 import com.varabyte.kotter.foundation.text.*
 import com.varabyte.kotter.foundation.timer.*
+import com.varabyte.kotter.runtime.terminal.*
 import com.varabyte.kotter.terminal.system.*
 import kotlin.time.*
 
 const val chars = "♔♕♖♗♘♙♚♛♜♝♞♟"
 const val hello = "Hello, press any key to continue! (Esc to exit)"
 
-//fun main() = session { //include VirtualTerminal while developing
-fun main() = session(SystemTerminal()) { //exclude VirtualTerminal from native image
+fun main() = start(SystemTerminal())
+fun start(terminal: Terminal) = session(terminal) {
     val list = liveListOf(hello.mapIndexed { i, c -> BC(c, i.toDouble(), 1.0) })
     val duration = 10.toDuration(DurationUnit.MILLISECONDS)
     var column = hello.length

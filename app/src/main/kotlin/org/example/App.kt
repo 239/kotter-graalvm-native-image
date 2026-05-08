@@ -11,13 +11,13 @@ import kotlin.time.*
 const val chars = "♔♕♖♗♘♙♚♛♜♝♞♟"
 const val hello = "Hello, press any key to continue! (Esc to exit)"
 
-//fun main() = session { //while developing
-fun main() = session(SystemTerminal()) { //excluding VirtualTerminal from native image
-    val list = liveListOf(hello.mapIndexed { i, c -> BC(c, i.toDouble(), 1.0) }) //CopyOnWriteArrayList?
+//fun main() = session { //include VirtualTerminal while developing
+fun main() = session(SystemTerminal()) { //exclude VirtualTerminal from native image
+    val list = liveListOf(hello.mapIndexed { i, c -> BC(c, i.toDouble(), 1.0) })
     val duration = 10.toDuration(DurationUnit.MILLISECONDS)
     var column = hello.length
-    var hue = 180
     var active = false
+    var hue = 239
     section {
         BC.limitx = width.coerceAtLeast(2) - 1.0
         BC.limity = height.coerceAtLeast(2) - 1.0
@@ -37,16 +37,17 @@ fun main() = session(SystemTerminal()) { //excluding VirtualTerminal from native
             .take(width).let { it + " ".repeat(width - it.length) })
     }.runUntilKeyPressed(Keys.Escape) {
         onKeyPressed {
+            active = true
             list.withWriteLock {
-                if (key == Keys.Space) add(BC(chars.random(), column++.toDouble(), 1.0))
-                else addAll("$key".map { BC(it, column++.toDouble(), 1.0) })
+                if (key == Keys.Space)
+                    add(BC(chars.random(), column++.toDouble(), 1.0))
+                else
+                    addAll("$key".map { BC(it, column++.toDouble(), 1.0) })
             }
             column %= BC.limitx.toInt()
-            active = true
         }
         addTimer(duration, true) {
             if (active && list.isNotEmpty()) list.withWriteLock {
-//                removeAll { it.bounces > 39 } //TODO does not work?!
                 removeAll(list.filter { it.bounces > 39 })
                 forEach { it.update() }
             }

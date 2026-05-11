@@ -21,6 +21,7 @@ java {
 
 application {
     mainClass = "org.example.AppKt"
+    applicationDefaultJvmArgs = listOf("--enable-native-access=ALL-UNNAMED")
 }
 
 // https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html

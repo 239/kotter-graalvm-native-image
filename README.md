@@ -2,7 +2,7 @@
 
 A colorful demo for the terminal built with Kotlin and [Kotter](https://github.com/varabyte/kotter)
 
-![hello](png/hello.png)
+![hello](hello.png)
 
 ## Features
 
@@ -29,5 +29,5 @@ The binary will be located in: `app/build/native/nativeCompile/`
 - `app/src/main/kotlin/org/example/App.kt`: Main rendering loop and input handling
 - `.github/workflows/release.yml`: Automated native build and release pipeline
 
-[^1]: Gradle and Kotter cannot share the output streams, so Kotter tries to run inside `VirtualTerminal` instead,
-which we want to avoid for the native build because of its heavy GUI dependencies.
+[^1]: Gradle and Kotter cannot share the output streams, so Kotter tries to run inside `VirtualTerminal`
+instead, which we want to avoid for the native build because of its heavy GUI dependencies.

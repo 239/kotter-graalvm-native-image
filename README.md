@@ -14,7 +14,7 @@ A colorful demo for the terminal built with Kotlin and [Kotter](https://github.c
 
 To run the application during development inside VirtualTerminal:
 
-`./gradlew test` (`run` will **not** work with good reason)
+`./gradlew test` (`run` will **not** work with good reason[^1])
 
 To generate a standalone executable for your current platform:
 
@@ -28,3 +28,6 @@ The binary will be located in: `app/build/native/nativeCompile/`
 - `app/build.gradle.kts`: Build script utilizing Gradle plugin for GraalVM Native Image
 - `app/src/main/kotlin/org/example/App.kt`: Main rendering loop and input handling
 - `.github/workflows/release.yml`: Automated native build and release pipeline
+
+[^1]: Gradle and Kotter cannot share the output streams, so Kotter tries to run the VirtualTerminal
+instead which we want to avoid for the native build because of its heavy GUI dependencies

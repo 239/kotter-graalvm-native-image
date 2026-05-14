@@ -7,10 +7,10 @@ class BC(
     var px: Double = 0.0,
     var py: Double = 0.0,
 ) {
+    var bounces: Int = 0
     private val restitution = Random.nextDouble(0.6, 0.9)
     private var vx = Random.nextDouble(-drift, drift)
     private var vy = 0.0
-    var bounces: Int = 0
 
     companion object {
         var limitx = 1.0

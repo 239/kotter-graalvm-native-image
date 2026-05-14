@@ -9,8 +9,8 @@ import com.varabyte.kotter.runtime.terminal.*
 import com.varabyte.kotter.terminal.system.*
 import kotlin.time.*
 
-const val chars = "♔♕♖♗♘♙♚♛♜♝♞♟"
 const val hello = "Hello, press any key to continue! (Esc to exit)"
+const val chars = "♔♕♖♗♘♙♚♛♜♝♞♟"
 
 fun main() = start(SystemTerminal())
 fun start(terminal: Terminal) = session(terminal) {
@@ -49,7 +49,9 @@ fun start(terminal: Terminal) = session(terminal) {
         }
         addTimer(duration, true) {
             if (active && list.isNotEmpty()) list.withWriteLock {
-                removeAll(list.filter { it.bounces > 39 })
+//                removeAll { it.bounces > 39 } //TODO works with 1.3.1
+//                rerender() //needed if nothing removed
+                removeAll(filter { it.bounces > 39 })
                 forEach { it.update() }
             }
         }

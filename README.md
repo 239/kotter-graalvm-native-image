@@ -1,6 +1,6 @@
 # Kotter + GraalVM Native Image + GitHub Actions
 
-A colorful demo for the terminal built with Kotlin and [Kotter](https://github.com/varabyte/kotter)
+A colorful demo built with the excellent [Kotlin terminal library](https://github.com/varabyte/kotter) 🩵
 
 ![hello](hello.png)
 

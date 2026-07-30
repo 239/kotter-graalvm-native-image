@@ -15,7 +15,6 @@ const val chars = "♔♕♖♗♘♙♚♛♜♝♞♟"
 fun main() = start(SystemTerminal())
 fun start(terminal: Terminal) = session(terminal) {
     val list = liveListOf(hello.mapIndexed { i, c -> BC(c, i.toDouble(), 1.0) })
-    val duration = 10.toDuration(DurationUnit.MILLISECONDS)
     var column = hello.length
     var active = false
     var hue = 239
@@ -47,10 +46,8 @@ fun start(terminal: Terminal) = session(terminal) {
             }
             column %= BC.limitx.toInt()
         }
-        addTimer(duration, true) {
+        addTimer(10.toDuration(DurationUnit.MILLISECONDS), true) {
             if (active && list.isNotEmpty()) list.withWriteLock {
-//                removeAll { it.bounces > 39 } //TODO works with 1.3.1
-//                rerender() //needed if nothing removed
                 removeAll(filter { it.bounces > 39 })
                 forEach { it.update() }
             }
